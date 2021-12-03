@@ -1,13 +1,55 @@
 class ArtistsController < ApplicationController
+  before_action :set_billboard
+
   def index
+    render json: @billboard.artists.all
   end
 
   def show
+    @artist = @billboard.artists.find(params[:id])
+    render component: 'Artist', props: { billboard: @billboard, topic: @artist }
   end
 
   def new
+    @artist = @billboard.artists.new
+    render component: 'ArtistNew', props: { billboard: @billboard, artist: @artist }
+  end
+
+  def create
+    @artist = @billboard.artists.new(artist_params)
+    if @artist.save
+      redirect_to billboards_path
+    else
+      render component: 'ArtistNew', props: { billboard: @billboard, artist: @artist }
+    end
   end
 
   def edit
+    @artist = @billboard.artists.find(params[:id])
+    render component: 'ArtistEdit', props: { billboard: @billboard, artist: @artist }
   end
+
+  def update
+    @artist = @billboard.artists.find(params[:id])
+    if @artist.update(artist_params)
+      redirect_to billboards_path
+    else
+      render component: 'ArtistsEdit', props: { billboard: @billboard, artist: @artist }
+    end
+  end
+
+  def destroy
+    @artist = @billboard.artists.find(params[:id])
+    @artists.destroy
+    redirect_to billboards_path
+  end
+
+  private 
+    def set_billboard
+      @billboard = Billboard.find(params[:billboard_id])
+    end
+
+    def artist_params
+      params.require(:artist).permit(:name, :rank)
+    end
 end
