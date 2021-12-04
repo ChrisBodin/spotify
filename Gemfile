@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
   gem 'pry'
+  gem 'faker'
 end
 
 group :development do

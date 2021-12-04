@@ -3,9 +3,9 @@ import React from 'react';
 const ArtistNew = ({ sub, topic }) => {
 
   const { id, name } = billboard
-  const { name, rank } = artist
+  const { name, description } = artist
   const defaultName = name ? name : ""
-  const defaultRank = rank ? rank : ""
+  const defaultDescription = description ? description : ""
   return (
     <>
       <h1>New Artist from the Billboard {name}</h1>
@@ -17,12 +17,13 @@ const ArtistNew = ({ sub, topic }) => {
           defaultValue={defaultName}
           name="artist[name]"
         />
-        <label>Rank</label>
-        <textarea
+        <label>Description</label>
+        <input 
+          type="text"
           required 
-          defaultValue={defaultRank}
-          name="artist[rank]"
-        ></textarea>
+          defaultValue={defaultDescription}
+          name="artist[description]"
+        />
         <button type="submit">Submit</button>
       </form>
     </>

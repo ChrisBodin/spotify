@@ -1,28 +1,28 @@
 import React from 'react';
 
-const ArtistEdit = ({ billboard, artist }) => {
+const SongEdit = ({ artist , song }) => {
 
-  const { id } = billboard 
-  const { name, description } = artist
+  const { id } = artist
+  const { name, album } = song
   const defaultName = name ? name : ""
-  const defaultDescription = description ? description : ""
+  const defaultAlbum = album ? album : ""
   return (
     <>
-      <h1>New artist from the Billboard {name}</h1>
-      <form action={`/billboards/${id}/artists/${artist.id}`} method="post">
+      <h1>Edit Song from the Artist </h1>
+      <form action={`/artists/${id}/songs/${song.id}`} method="post">
         <input type="hidden" name="_method" value="patch" />
         <label>Name</label>
         <input 
           type="text"
           required 
           defaultValue={defaultName}
-          name="artist[name]"
+          name="song[name]"
         />
         <label>Description</label>
         <textarea
           required 
-          defaultValue={defaultDescription}
-          name="artist[description]"
+          defaultValue={defaultAlbum}
+          name="song[album]"
         ></textarea>
         <button type="submit">Submit</button>
       </form>
@@ -30,4 +30,4 @@ const ArtistEdit = ({ billboard, artist }) => {
   )
 }
 
-export default ArtistEdit;
+export default SongEdit;

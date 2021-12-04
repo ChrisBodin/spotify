@@ -1,5 +1,5 @@
 class Artist < ApplicationRecord
   belongs_to :billboard
   has_many :songs, dependant: :destroy
-  validates :name, presence: true
+  validates :name, :description, presence: true
 end

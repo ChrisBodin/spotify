@@ -15,8 +15,8 @@ const Artists = ({ billboard, artists }) => {
        <a href={`${url}${artist.id}/edit`}>Edit</a>
        <a href={`${url}${artist.id}`} data-method="delete">
          Delete
-       </a>
-      </>
+        </a>
+       </>
       )) }
     </>
   )
